@@ -10,11 +10,11 @@ def secureInput(inputText,errorMessage="",**kwargs):
 	if "blackList" in kwargs:
 		while result in kwargs["blackList"]:
 			print(errorMessage)
-			input(inputText)
+			result=input(inputText)
 	elif "whiteList" in kwargs:
 		while not(result in kwargs["whiteList"]):
 			print(errorMessage)
-			input(inputText)
+			result=input(inputText)
 		
 	return result
 	
@@ -56,7 +56,7 @@ def getVocabSheet():
 		return
 		
 	print(*vocabLists,sep="\n")
-	listName=secureInput("Choose the list you want to train : ","\n".join(vocabLists),whiteList=vocabLists)
+	listName=secureInput("Choose the list you want to train : ","you must pick one of the following lists : \n"+"\n".join(vocabLists),whiteList=vocabLists)
 		
 	with open(vocabFolder+listName+".li","r") as vocabFile:
 		vocabSheet=json.load(vocabFile)
