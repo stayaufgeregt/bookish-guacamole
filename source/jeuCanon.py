@@ -2,6 +2,7 @@ import sys
 import math
 import random
 import time
+import matplotlib as plt
 from PyQt5.QtCore import (
     Qt,
     QBasicTimer,
@@ -1107,8 +1108,7 @@ class Launcher(QGraphicsScene):
     def __init__(self, parent = None):
         QGraphicsScene.__init__(self, parent)
         self.initUI()
-    def resizeEvent(self,e):
-        print("non")
+
     def initUI(self):
        
         self.view = QGraphicsView(self)
@@ -1173,6 +1173,34 @@ class Launcher(QGraphicsScene):
 
     def Progress(self):
         print("Progress")
+
+class ProgressScene(QGraphicsScene):
+    def __init__(self, parent = None):
+        QGraphicsScene.__init__(self, parent)
+        self.initUI()
+    def initUI(self):
+       
+        self.view = QGraphicsView(self)
+        self.view.setGeometry(300, 300, 960, 540)
+        self.view.setWindowTitle("Bookish-Quacamole")
+        self.setSceneRect(0,0,960,540)
+        
+        self.btn = QPushButton()
+        self.btn.setStyleSheet("QPushButton{background-color:transparent;border-image:url(buttonGame1.png);background:none;border:none;}")
+        self.btn.resize(200,52)
+        self.btn.clicked.connect(self.Menu)
+        self.btn.setAttribute(Qt.WA_TranslucentBackground)
+        self.wid1 = QGraphicsProxyWidget()
+        self.wid1.setWidget(self.btn)  
+        self.wid1.setPos(380,265)
+
+        self.addItem(self.wid1)
+
+        self.view.show()
+    
+    def Menu(self):
+        print("Jeu 1")
+        
 
 
 if __name__ == '__main__':
