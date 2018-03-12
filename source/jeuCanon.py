@@ -148,14 +148,14 @@ class Scene(QGraphicsScene):
         #le score
         self.score = QGraphicsTextItem()
         self.score.setPos(0,0)
-        self.scoreNumber = 0##########################
+        self.scoreNumber = 300##########################
         self.score.setPlainText("Score: "+str(self.scoreNumber))
         self.score.setScale(2)
         self.addItem(self.score)
 
         self.Niv = QGraphicsTextItem()
         self.Niv.setPos(370,0)
-        self.niveau = 1##############################
+        self.niveau = 3##############################
         self.Niv.setPlainText("Level "+str(self.niveau))
         self.Niv.setScale(2)
         self.addItem(self.Niv)
@@ -329,6 +329,20 @@ class Scene(QGraphicsScene):
         self.BoulLoup.setPlainText("Tirs Loupés: "+str(self.BouletLoupé))
         self.addItem(self.BoulLoup)
 
+        self.btnRetour = QPushButton("Menu")
+        self.btnRetour.resize(200,52)
+        self.btnRetour.clicked.connect(self.Retour)
+        self.btnRetour.setAttribute(Qt.WA_TranslucentBackground)
+        self.wid8 = QGraphicsProxyWidget()
+        self.wid8.setWidget(self.btnRetour)  
+        self.wid8.setPos(300,70)
+        self.addItem(self.wid8)
+
+    def Retour(self):
+        self.view.hide()
+        self.FinalMusic.stop()
+        lanceur.Show()
+        #sys.exit(app.exec_())
 
 
     def timerEvent(self, event):
@@ -1166,13 +1180,17 @@ class Launcher(QGraphicsScene):
         print("Jeu 1")
         self.view.hide()
         self.MusicAmbiance.stop()
-        scene = Scene()
+        scene = Scene(self)
 
     def Jeu2(self):
         print("Jeu 2")
 
     def Progress(self):
         print("Progress")
+
+    def Show(self):
+        self.view.show()
+        self.MusicAmbiance.play()
 
 class ProgressScene(QGraphicsScene):
     def __init__(self, parent = None):
