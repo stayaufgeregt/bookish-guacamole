@@ -132,7 +132,6 @@ class Scene(QGraphicsScene):
 
         self.music6 = QSound("pewpew.wav")
 
-        print("on est la\n")
         self.canon.setRotation(-30)
         self.addItem(self.landscape)
         self.addItem(self.canon)
@@ -222,18 +221,13 @@ class Scene(QGraphicsScene):
                 self.XBoulet = POSCanonX+15+self.XBoulet
                 self.YBoulet = POSCanonY+47-self.YBoulet
                 self.listFIREOK[self.listBoulet[0]-1]=1
-                print("list fireok ",self.listFIREOK)
                 self.x =self.XBoulet
                 self.y=self.YBoulet
-                print("ON utilise le boulet ",self.listBoulet[0])
                 self.listCoord[self.listBoulet[0]-1][0]=self.XBoulet
                 self.listCoord[self.listBoulet[0]-1][1]=self.YBoulet
-                print("les coor du boulet ",self.listCoord[self.listBoulet[0]-1])
                 self.Coffre[self.listBoulet[0]-1].setPos(self.XBoulet,self.YBoulet)
                 self.addItem(self.Coffre[self.listBoulet[0]-1])
                 self.listBoulet = self.listBoulet[1:] #on enleve le boulet en bas de la liste
-                print("boulet suivant est ",self.listBoulet[0])
-                print("Coord ",self.listCoord)
             else:
                 print("Plus de munition")
 
@@ -350,9 +344,7 @@ class Scene(QGraphicsScene):
             #on oriente le canon
             if (self.MouseX-(15+POSCanonX+300)) != 0:
                 self.zeta = math.atan((self.MouseY-(47+POSCanonY+200))/(self.MouseX-(15+POSCanonX+300)))
-            print("X: ",self.MouseX," Y: ",self.MouseY)
             self.zeta = (self.zeta*360)/(2*math.pi)
-            print("zeta :",self.zeta)
             self.canon.setRotation(self.zeta)
             self.update()
             #print("mot ",self.motSelec)
@@ -438,7 +430,6 @@ class Scene(QGraphicsScene):
                     self.update()
                     self.cptTour = self.cptTour+1
                 if self.cptTour2<50 and self.cptTour>=50:
-                    print("LA")
                     self.tempsPanier =0
                     self.CoorPanier[0] = self.CoorPanier[0]-VITESSEPANIER2*(FRAME_TIME_MS/200)
                     self.tempsPanier = self.tempsPanier+FRAME_TIME_MS/200
@@ -486,7 +477,6 @@ class Scene(QGraphicsScene):
                         self.listAlphaShot[u] = 0
                         self.cptBouletUsed= self.cptBouletUsed-1
                         self.listBoulet=self.listBoulet+[u+1]
-                        print("La liste boulet est ",self.listBoulet)
 
                     if self.listCoord[u][0]>self.CoorPanier[0] and self.listCoord[u][0]<(self.CoorPanier[0]+50):
                         if self.listCoord[u][1]>self.CoorPanier[1] and self.listCoord[u][1]<(self.CoorPanier[1]+50) and self.panierSelec==0:
@@ -610,12 +600,9 @@ class Scene(QGraphicsScene):
                         
 
                     if self.listFIREOK[u] == 1:
-                        print("u est: ",u)
-                        print("Fireok : ",self.listFIREOK)
                         self.listCoord[u][0] = self.x+math.cos(self.listAlphaShot[u])*VITESSECANON*self.listeTemps[u]
                         self.listCoord[u][1] = self.y+(0.5)*G*self.listeTemps[u]*self.listeTemps[u]-math.sin(self.listAlphaShot[u])*VITESSECANON*self.listeTemps[u]
                         self.Coffre[u].setPos(self.listCoord[u][0],self.listCoord[u][1])
-                        print("LALALALLALALALA")
                         self.update()
                         self.listeTemps[u]=self.listeTemps[u]+FRAME_TIME_MS/200
 
@@ -623,7 +610,6 @@ class Scene(QGraphicsScene):
                     #print("/////////////////////")
             if self.niveau ==2:
                 if self.cptTour<50:
-                    print("ICI")
                     """
                     rand = random.randint(0,1)
                     rand2 = random.randint(0,1)
@@ -686,7 +672,6 @@ class Scene(QGraphicsScene):
                     self.update()
                     self.cptTour = self.cptTour+1
                 if self.cptTour2<50 and self.cptTour>=50:
-                    print("LA")
                     self.tempsPanier =0
                     self.CoorPanier[0] = self.CoorPanier[0]-VITESSEPANIER2*(FRAME_TIME_MS/200)
                     self.tempsPanier = self.tempsPanier+FRAME_TIME_MS/200
@@ -734,7 +719,6 @@ class Scene(QGraphicsScene):
                         self.listAlphaShot[u] = 0
                         self.cptBouletUsed= self.cptBouletUsed-1
                         self.listBoulet=self.listBoulet+[u+1]
-                        print("La liste boulet est ",self.listBoulet)
 
                     if self.listCoord[u][0]>self.CoorPanier[0] and self.listCoord[u][0]<(self.CoorPanier[0]+50):
                         if self.listCoord[u][1]>self.CoorPanier[1] and self.listCoord[u][1]<(self.CoorPanier[1]+50) and self.panierSelec==0:
@@ -859,19 +843,15 @@ class Scene(QGraphicsScene):
                         
 
                     if self.listFIREOK[u] == 1:
-                        print("u est: ",u)
-                        print("Fireok : ",self.listFIREOK)
                         self.listCoord[u][0] = self.x+math.cos(self.listAlphaShot[u])*VITESSECANON*self.listeTemps[u]
                         self.listCoord[u][1] = self.y+(0.5)*G*self.listeTemps[u]*self.listeTemps[u]-math.sin(self.listAlphaShot[u])*VITESSECANON*self.listeTemps[u]
                         self.Coffre[u].setPos(self.listCoord[u][0],self.listCoord[u][1])
-                        print("LALALALLALALALA")
                         self.update()
                         self.listeTemps[u]=self.listeTemps[u]+FRAME_TIME_MS/200
 
                     u=u+1
             if self.niveau ==3:
                 if self.cptTour<50:
-                    print("ICI")
                     """
                     rand = random.randint(0,1)
                     rand2 = random.randint(0,1)
@@ -934,7 +914,6 @@ class Scene(QGraphicsScene):
                     self.update()
                     self.cptTour = self.cptTour+1
                 if self.cptTour2<50 and self.cptTour>=50:
-                    print("LA")
                     self.tempsPanier =0
                     self.CoorPanier[0] = self.CoorPanier[0]-VITESSEPANIER2*(FRAME_TIME_MS/200)
                     self.tempsPanier = self.tempsPanier+FRAME_TIME_MS/200
@@ -982,7 +961,6 @@ class Scene(QGraphicsScene):
                         self.listAlphaShot[u] = 0
                         self.cptBouletUsed= self.cptBouletUsed-1
                         self.listBoulet=self.listBoulet+[u+1]
-                        print("La liste boulet est ",self.listBoulet)
 
                     if self.listCoord[u][0]>self.CoorPanier[0] and self.listCoord[u][0]<(self.CoorPanier[0]+50):
                         if self.listCoord[u][1]>self.CoorPanier[1] and self.listCoord[u][1]<(self.CoorPanier[1]+50) and self.panierSelec==0:
@@ -1107,12 +1085,9 @@ class Scene(QGraphicsScene):
                         
 
                     if self.listFIREOK[u] == 1:
-                        print("u est: ",u)
-                        print("Fireok : ",self.listFIREOK)
                         self.listCoord[u][0] = self.x+math.cos(self.listAlphaShot[u])*VITESSECANON*self.listeTemps[u]
                         self.listCoord[u][1] = self.y+(0.5)*G*self.listeTemps[u]*self.listeTemps[u]-math.sin(self.listAlphaShot[u])*VITESSECANON*self.listeTemps[u]
                         self.Coffre[u].setPos(self.listCoord[u][0],self.listCoord[u][1])
-                        print("LALALALLALALALA")
                         self.update()
                         self.listeTemps[u]=self.listeTemps[u]+FRAME_TIME_MS/200
 
