@@ -3,6 +3,8 @@ import math
 import random
 import time
 import matplotlib as plt
+import listGuesserGUI
+
 from PyQt5.QtCore import (
     Qt,
     QBasicTimer,
@@ -46,10 +48,11 @@ VITESSEPANIER = 20 #pix/sec
 VITESSEPANIER2 = 50
 VITESSEPANIER3 = 120
 G = 25#9.81
-    
+
 #longueur 65 pixels
 #hauteur 22 pixels
 
+imagesFolder="../resources/images/"
 
 class Scene(QGraphicsScene):
     def __init__(self, parent = None):
@@ -178,7 +181,7 @@ class Scene(QGraphicsScene):
         self.YBoulet=0
         self.Coord = [self.XBoulet,self.YBoulet]
         self.listCoord = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
-        print(self.listCoord)
+        #print(self.listCoord)
         self.listeTemps =[0,0,0,0,0,0,0,0,0]
         self.listAlphaShot = [0,0,0,0,0,0,0,0,0]
 
@@ -209,10 +212,10 @@ class Scene(QGraphicsScene):
             self.canon.setRotation(self.canon.rotation()-2)
         if e.key() == Qt.Key_S:
             self.canon.setRotation(self.canon.rotation()+2)
-            print(-(math.fmod(self.canon.rotation(),360)-40))
+            #print(-(math.fmod(self.canon.rotation(),360)-40))
         if e.key() == Qt.Key_Space:
             if(self.cptBouletUsed < 8):
-                print("FIRE!\n")
+                #print("FIRE!\n")
                 self.music6.play()
                 self.cptBouletUsed = self.cptBouletUsed+1
                 self.listAlphaShot[self.listBoulet[0]-1] = (-(math.fmod(self.canon.rotation(),360)-40))*2*math.pi/360
@@ -229,7 +232,8 @@ class Scene(QGraphicsScene):
                 self.addItem(self.Coffre[self.listBoulet[0]-1])
                 self.listBoulet = self.listBoulet[1:] #on enleve le boulet en bas de la liste
             else:
-                print("Plus de munition")
+                #print("Plus de munition")
+                pass
 
     def victoire(self):
         self.aniTrue=1
@@ -468,7 +472,7 @@ class Scene(QGraphicsScene):
                 while u<9:
                     #print(u)
                     if self.listCoord[u][1] > 400: #ça sort de l'écran donc on annule le boulet
-                        print("OVER MAP !!!!!")
+                        #print("OVER MAP !!!!!")
                         self.BouletLoupé=self.BouletLoupé+1
                         self.listFIREOK[u]=0
                         self.listCoord[u][0]=-20
@@ -710,7 +714,7 @@ class Scene(QGraphicsScene):
                 while u<9:
                     #print(u)
                     if self.listCoord[u][1] > 400: #ça sort de l'écran donc on annule le boulet
-                        print("OVER MAP !!!!!")
+                        #print("OVER MAP !!!!!")
                         self.BouletLoupé=self.BouletLoupé+1
                         self.listFIREOK[u]=0
                         self.listCoord[u][0]=-20
@@ -952,7 +956,7 @@ class Scene(QGraphicsScene):
                 while u<9:
                     #print(u)
                     if self.listCoord[u][1] > 400: #ça sort de l'écran donc on annule le boulet
-                        print("OVER MAP !!!!!")
+                        #print("OVER MAP !!!!!")
                         self.BouletLoupé=self.BouletLoupé+1
                         self.listFIREOK[u]=0
                         self.listCoord[u][0]=-20
@@ -1096,10 +1100,12 @@ class Scene(QGraphicsScene):
 class Launcher(QGraphicsScene):
     def __init__(self, parent = None):
         QGraphicsScene.__init__(self, parent)
+        self.jeu2=listGuesserGUI.getWindowApp(self)
         self.initUI()
+        
 
     def initUI(self):
-       
+        
         self.view = QGraphicsView(self)
         self.view.setGeometry(300, 300, 960, 540)
         self.view.setWindowTitle("Bookish-Quacamole")
@@ -1122,7 +1128,7 @@ class Launcher(QGraphicsScene):
         self.wid2 = QGraphicsProxyWidget()
         self.wid2.setWidget(self.btn2)  
         self.wid2.setPos(380,337) 
-
+    
         self.btn3 = QPushButton()
         self.btn3.setStyleSheet("QPushButton{background-color:transparent;border-image:url(buttonProgress.png);background:none;border:none;}")
         self.btn3.resize(200,52)
@@ -1152,17 +1158,22 @@ class Launcher(QGraphicsScene):
         self.view.show()
     
     def Jeu1(self):
-        print("Jeu 1")
+        #print("Jeu 1")
         self.view.hide()
         self.MusicAmbiance.stop()
         scene = Scene(self)
 
     def Jeu2(self):
-        print("Jeu 2")
+        #print("Jeu 2")
+        self.view.hide()
+        self.MusicAmbiance.stop()
+        self.jeu2.show()
+        
+        
 
     def Progress(self):
-        print("Progress")
-
+        #print("Progress")
+        pass
     def Show(self):
         self.view.show()
         self.MusicAmbiance.play()
@@ -1184,7 +1195,7 @@ class ProgressScene(QGraphicsScene):
         self.btn.clicked.connect(self.Menu)
         self.btn.setAttribute(Qt.WA_TranslucentBackground)
         self.wid1 = QGraphicsProxyWidget()
-        self.wid1.setWidget(self.btn)  
+        self.wid1.setWidget(self.btn)
         self.wid1.setPos(380,265)
 
         self.addItem(self.wid1)
@@ -1192,12 +1203,13 @@ class ProgressScene(QGraphicsScene):
         self.view.show()
     
     def Menu(self):
-        print("Jeu 1")
-        
+        #print("Jeu 1")
+        pass
 
 
 if __name__ == '__main__':
     
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon(imagesFolder+"avocado.ico"))
     lanceur = Launcher()
     sys.exit(app.exec_())
