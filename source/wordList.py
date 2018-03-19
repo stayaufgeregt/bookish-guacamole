@@ -1,3 +1,4 @@
+from PyQt5.QtWidgets import QFileDialog
 import json
 import os
 
@@ -48,7 +49,7 @@ def createVocabSheet():
 	
 	
 def getVocabSheet():
-	vocabLists=[fileName[:-3] for fileName in os.listdir(vocabFolder) if len(fileName)>3 and fileName[-3:]==".li" ]
+	"""vocabLists=[fileName[:-3] for fileName in os.listdir(vocabFolder) if len(fileName)>3 and fileName[-3:]==".li" ]
 	vocabSheet=None
 	
 	if len(vocabLists)==0:
@@ -57,8 +58,12 @@ def getVocabSheet():
 		
 	print(*vocabLists,sep="\n")
 	listName=secureInput("Choose the list you want to train : ","you must pick one of the following lists : \n"+"\n".join(vocabLists),whiteList=vocabLists)
-		
-	with open(vocabFolder+listName+".li","r") as vocabFile:
+	"""
+	
+	vocabSheet=None
+	listPath=QFileDialog.getOpenFileName(None,"Choose a training list",vocabFolder,"vocab list (*.li)")[0]
+	
+	with open(listPath,"r") as vocabFile:
 		vocabSheet=json.load(vocabFile)
 		
 	return vocabSheet
