@@ -3,11 +3,11 @@ import time
 resources="../resources/"
 
 
-def saveScore(points, playerName):
+def saveScore(points, playerName, game):
 	#ajoute le score d'un joueur à une partie
 	with open(resources+"score","a") as score:
 	
-		score.write(time.ctime()+"\t"+playerName+"\t"+str(points)+"\n")
+		score.write(time.ctime()+"\t"+playerName+"\t"+str(points)+"\t"+game+"\n")
 		
 	#
 	
@@ -28,7 +28,7 @@ def getScoreBoard(**kwargs):
 	
 def sortScoreBoard(scoreBoard,attribute):
 	#trie un tableau de scores
-	item_code={'date':0,'name':1,'point':2,'points':2}[attribute]
+	item_code={'date':0,'name':1,'point':2,'points':2,'game':3}[attribute]
 	
 	if item_code==0:
 		scoreBoard.sort(key=lambda x:time.strptime(x[0]), reverse=True)
@@ -36,14 +36,16 @@ def sortScoreBoard(scoreBoard,attribute):
 		scoreBoard.sort(key=lambda x:x[1])
 	elif item_code==2:
 		scoreBoard.sort(key=lambda x:int(x[2]),reverse=True)
+	elif item_code==3:
+		scoreBoard.sort(key=lambda x:x[3])
 		
 	return scoreBoard
 
 if __name__=='__main__':
 	
-	saveScore(7,"Billy")
-	saveScore(0,"Coco")
-	saveScore(-14,"Refoulay")
+	saveScore(7,"Billy","1")
+	saveScore(0,"Coco","1")
+	saveScore(-14,"Refoulay","2")
 		
 		
 	print(*getScoreBoard(sort='point'),sep='\n')

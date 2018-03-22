@@ -4,7 +4,8 @@ import random
 import time
 import matplotlib as plt
 import listGuesserGUI
-
+import os
+from scoreBoard import *
 from PyQt5.QtCore import (
     Qt,
     QBasicTimer,
@@ -1170,11 +1171,16 @@ class Launcher(QGraphicsScene):
         self.MusicAmbiance.stop()
         self.jeu2.show()
         
-        
+       
 
     def Progress(self):
-        #print("Progress")
-        pass
+        self.view.hide()
+        os.system("cls")
+        for li in getScoreBoard(sort='point'):
+            print("%25s\t%25s\t%4s\t%16s"%li)
+        input("\n[Press enter to quit]")
+        self.Show()
+        return
     def Show(self):
         self.view.show()
         self.MusicAmbiance.play()

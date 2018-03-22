@@ -21,7 +21,7 @@ def secureInput(inputText,errorMessage="",**kwargs):
 	
 	
 def createVocabSheet():
-
+	os.system("cls")
 	listName=input("Enter sheet name (case sensitive): ")
 	listPath=vocabFolder+listName+".li"
 	vocabSheet={}
@@ -62,11 +62,13 @@ def getVocabSheet():
 	
 	vocabSheet=None
 	listPath=QFileDialog.getOpenFileName(None,"Choose a training list",vocabFolder,"vocab list (*.li)")[0]
+	sheetName=None
 	
 	with open(listPath,"r") as vocabFile:
 		vocabSheet=json.load(vocabFile)
-		
-	return vocabSheet
+		sheetName=os.path.basename(vocabFile.name)
+
+	return sheetName,vocabSheet
 	
 if __name__=='__main__':
 	createVocabSheet()

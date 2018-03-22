@@ -2,6 +2,9 @@ from wordList import *
 from difflib import SequenceMatcher as match
 import time
 import random
+import os
+import scoreBoard
+
 
 def normalize(word):
 	return str.lower(" ".join(word.split()))
@@ -9,16 +12,18 @@ def normalize(word):
 def similitude(word1, word2):
 	return match(None,word1,word2).ratio()
 	
-def guess1word(vocabSheet):
-	
+def guess1word(sheetName,vocabSheet):
+	os.system("cls")
 	print("Traduisez les mots suivants !")
 	
 	score=0
 	closeWords=0
-	start=time.time()
 	
 	words=list(vocabSheet.items())
 	random.shuffle(words)
+	
+	start=time.time()
+
 	for keyWord,wordToGuess in words:
 		answer=normalize(secureInput(keyWord+" : ","Answer cannot be empty !",blackList=[""]))
 		
@@ -38,10 +43,13 @@ def guess1word(vocabSheet):
 	
 	spentTime=time.time()-start
 	print("You guessed {}/{} words in {} seconds !".format(score,len(vocabSheet),spentTime))
+	points=int((1000*score+100*closeWords)/spentTime)
+	print(points," points !")
 	
-	return int((1000*score+100*closeWords)/spentTime)
+	scoreBoard.saveScore(points, "You", "2/"+sheetName)
+	input("\n[Press enter to quit]")
+	return
 	
 	
 if __name__=='__main__':
-	
-	print(guess1word(getVocabSheet()))
+	guess1word(*getVocabSheet())
