@@ -169,7 +169,7 @@ class Scene(QGraphicsScene):
 
         self.view = QGraphicsView(self)
         self.view.setGeometry(300, 300, 800, 400)
-        self.view.setWindowTitle("Bookish-Quacamole")
+        self.view.setWindowTitle("Bookish-Guacamole")
         self.canon.setPos(POSCanonX,POSCanonY)
         self.view.show()
         self.setSceneRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)
@@ -1108,7 +1108,7 @@ class Launcher(QGraphicsScene):
         
         self.view = QGraphicsView(self)
         self.view.setGeometry(300, 300, 960, 540)
-        self.view.setWindowTitle("Bookish-Quacamole")
+        self.view.setWindowTitle("Bookish-Guacamole")
         self.setSceneRect(0,0,960,540)
         
         self.btn = QPushButton()
@@ -1186,7 +1186,7 @@ class ProgressScene(QGraphicsScene):
        
         self.view = QGraphicsView(self)
         self.view.setGeometry(300, 300, 960, 540)
-        self.view.setWindowTitle("Bookish-Quacamole")
+        self.view.setWindowTitle("Bookish-Guacamole")
         self.setSceneRect(0,0,960,540)
         
         self.btn = QPushButton()
