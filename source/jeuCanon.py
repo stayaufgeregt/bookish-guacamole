@@ -4,11 +4,6 @@ import random
 import time
 import matplotlib as plt
 import listGuesserGUI
-import scoreBoard
-#saveScore(points, playerName)
-#ex: saveScore(64, "maximaxft")
-#getScoreBoard(sort=[ 'points' | 'point' | 'name' | 'date' ])
-#ex: saveScore(), saveScore(sort='points')
 
 from PyQt5.QtCore import (
     Qt,
@@ -68,14 +63,14 @@ class Scene(QGraphicsScene):
         self.MusicAmbiance.setLoops(-1)
         self.MusicAmbiance.play()
         self.Piece = QSound("piece.wav")
-        self.motsMeeting = [["attend","assister à"],["miss","manquer"],["run/chair","s'occuper de"],["bring forward","avancer"],["set up/arrange","organiser"]]
-        self.nbMot1 = random.randint(0,4)
-        self.nbMot2 = random.randint(0,4)
-        self.nbMot3 = random.randint(0,4)
+        self.motsMeeting = [["to attend","assister à"],["to miss","manquer"],["run/chair","s'occuper de"],["bring forward","avancer"],["set up/arrange","organiser"],["to rehearse","répeter"],["scattered","éparpiller"],["to summarize","résumer"],["stave off","repousser"]]
+        self.nbMot1 = random.randint(0,8)
+        self.nbMot2 = random.randint(0,8)
+        self.nbMot3 = random.randint(0,8)
         while self.nbMot2 == self.nbMot1 :
-            self.nbMot2 = random.randint(0,4)
+            self.nbMot2 = random.randint(0,8)
         while self.nbMot3 == self.nbMot2 or self.nbMot3 == self.nbMot1 :
-            self.nbMot3 = random.randint(0,4)
+            self.nbMot3 = random.randint(0,8)
         self.motSelec = [self.motsMeeting[self.nbMot1],self.motsMeeting[self.nbMot2],self.motsMeeting[self.nbMot3]]
         
         self.motTargetFR = QGraphicsTextItem()
@@ -155,21 +150,21 @@ class Scene(QGraphicsScene):
         #le score
         self.score = QGraphicsTextItem()
         self.score.setPos(0,0)
-        self.scoreNumber = 300##########################
+        self.scoreNumber = 0##########################
         self.score.setPlainText("Score: "+str(self.scoreNumber))
         self.score.setScale(2)
         self.addItem(self.score)
 
         self.Niv = QGraphicsTextItem()
         self.Niv.setPos(370,0)
-        self.niveau = 3##############################
+        self.niveau = 1##############################
         self.Niv.setPlainText("Level "+str(self.niveau))
         self.Niv.setScale(2)
         self.addItem(self.Niv)
 
         self.BoulLoup = QGraphicsTextItem()
         self.BoulLoup.setPos(300,200)
-        self.BoulLoup.setPlainText("Tirs Loupés: "+str(self.BouletLoupé))
+        self.BoulLoup.setPlainText("Missed Shots: "+str(self.BouletLoupé))
         self.BoulLoup.setScale(3)
 
         self.view = QGraphicsView(self)
@@ -241,6 +236,7 @@ class Scene(QGraphicsScene):
                 pass
 
     def victoire(self):
+        """
         self.aniTrue=1
         self.label2 = QLabel()
         self.movie2 = QMovie("source.gif")
@@ -288,15 +284,15 @@ class Scene(QGraphicsScene):
         self.addItem(self.wid)
         self.movie.start()
         self.music1 = QSound("wow.wav")
-        self.music1.play()
-        self.music2 = QSound("wowCOMBO.wav")
-        self.music3 = QSound("Skrillex.wav")
-        self.music4 = QSound("Triple.wav")
-        self.music5 = QSound("airporn.wav")
+        self.music1.play()"""
+        self.music2 = QSound("1-up.wav")
+        #self.music3 = QSound("Skrillex.wav")
+        #self.music4 = QSound("Triple.wav")
+        #self.music5 = QSound("airporn.wav")
         self.music2.play()
-        self.music3.play()
-        self.music4.play()
-        self.music5.play()
+        #self.music3.play()
+        #self.music4.play()
+        #self.music5.play()
 
     def victoireFinale(self):
         self.MusicAmbiance.stop()
@@ -496,15 +492,15 @@ class Scene(QGraphicsScene):
 
                             self.panierSelec = random.randint(0,2)
                             motTemp = self.nbMot1
-                            self.nbMot1 = random.randint(0,4)
-                            self.nbMot2 = random.randint(0,4)
-                            self.nbMot3 = random.randint(0,4)
+                            self.nbMot1 = random.randint(0,8)
+                            self.nbMot2 = random.randint(0,8)
+                            self.nbMot3 = random.randint(0,8)
                             while self.nbMot1 == motTemp:
-                                self.nbMot1 = random.randint(0,4)
+                                self.nbMot1 = random.randint(0,8)
                             while self.nbMot2 == self.nbMot1 :
-                                self.nbMot2 = random.randint(0,4)
+                                self.nbMot2 = random.randint(0,8)
                             while self.nbMot3 == self.nbMot2 or self.nbMot3 == self.nbMot1 :
-                                self.nbMot3 = random.randint(0,4)
+                                self.nbMot3 = random.randint(0,8)
                             self.motSelec = [self.motsMeeting[self.nbMot1],self.motsMeeting[self.nbMot2],self.motsMeeting[self.nbMot3]]
                             self.motTargetFR.setPlainText(self.motSelec[0][1])
                             self.motTargetEN1.setPlainText(self.motSelec[0][0])
@@ -536,15 +532,15 @@ class Scene(QGraphicsScene):
 
                             self.panierSelec = random.randint(0,2)
                             motTemp = self.nbMot1
-                            self.nbMot1 = random.randint(0,4)
-                            self.nbMot2 = random.randint(0,4)
-                            self.nbMot3 = random.randint(0,4)
+                            self.nbMot1 = random.randint(0,8)
+                            self.nbMot2 = random.randint(0,8)
+                            self.nbMot3 = random.randint(0,8)
                             while self.nbMot1 == motTemp:
-                                self.nbMot1 = random.randint(0,4)
+                                self.nbMot1 = random.randint(0,8)
                             while self.nbMot2 == self.nbMot1 :
-                                self.nbMot2 = random.randint(0,4)
+                                self.nbMot2 = random.randint(0,8)
                             while self.nbMot3 == self.nbMot2 or self.nbMot3 == self.nbMot1 :
-                                self.nbMot3 = random.randint(0,4)
+                                self.nbMot3 = random.randint(0,8)
                             self.motSelec = [self.motsMeeting[self.nbMot1],self.motsMeeting[self.nbMot2],self.motsMeeting[self.nbMot3]]
                             self.motTargetFR.setPlainText(self.motSelec[0][1])
                             self.motTargetEN1.setPlainText(self.motSelec[0][0])
@@ -576,15 +572,15 @@ class Scene(QGraphicsScene):
                             
                             self.panierSelec = random.randint(0,2)
                             motTemp = self.nbMot1
-                            self.nbMot1 = random.randint(0,4)
-                            self.nbMot2 = random.randint(0,4)
-                            self.nbMot3 = random.randint(0,4)
+                            self.nbMot1 = random.randint(0,8)
+                            self.nbMot2 = random.randint(0,8)
+                            self.nbMot3 = random.randint(0,8)
                             while self.nbMot1 == motTemp:
-                                self.nbMot1 = random.randint(0,4)
+                                self.nbMot1 = random.randint(0,8)
                             while self.nbMot2 == self.nbMot1 :
-                                self.nbMot2 = random.randint(0,4)
+                                self.nbMot2 = random.randint(0,8)
                             while self.nbMot3 == self.nbMot2 or self.nbMot3 == self.nbMot1 :
-                                self.nbMot3 = random.randint(0,4)
+                                self.nbMot3 = random.randint(0,8)
                             self.motSelec = [self.motsMeeting[self.nbMot1],self.motsMeeting[self.nbMot2],self.motsMeeting[self.nbMot3]]
                             self.motTargetFR.setPlainText(self.motSelec[0][1])
                             self.motTargetEN1.setPlainText(self.motSelec[0][0])
@@ -739,15 +735,15 @@ class Scene(QGraphicsScene):
 
                             self.panierSelec = random.randint(0,2)
                             motTemp = self.nbMot1
-                            self.nbMot1 = random.randint(0,4)
-                            self.nbMot2 = random.randint(0,4)
-                            self.nbMot3 = random.randint(0,4)
+                            self.nbMot1 = random.randint(0,8)
+                            self.nbMot2 = random.randint(0,8)
+                            self.nbMot3 = random.randint(0,8)
                             while self.nbMot1 == motTemp:
-                                self.nbMot1 = random.randint(0,4)
+                                self.nbMot1 = random.randint(0,8)
                             while self.nbMot2 == self.nbMot1 :
-                                self.nbMot2 = random.randint(0,4)
+                                self.nbMot2 = random.randint(0,8)
                             while self.nbMot3 == self.nbMot2 or self.nbMot3 == self.nbMot1 :
-                                self.nbMot3 = random.randint(0,4)
+                                self.nbMot3 = random.randint(0,8)
                             self.motSelec = [self.motsMeeting[self.nbMot1],self.motsMeeting[self.nbMot2],self.motsMeeting[self.nbMot3]]
                             self.motTargetFR.setPlainText(self.motSelec[0][1])
                             self.motTargetEN1.setPlainText(self.motSelec[0][0])
@@ -779,15 +775,15 @@ class Scene(QGraphicsScene):
 
                             self.panierSelec = random.randint(0,2)
                             motTemp = self.nbMot1
-                            self.nbMot1 = random.randint(0,4)
-                            self.nbMot2 = random.randint(0,4)
-                            self.nbMot3 = random.randint(0,4)
+                            self.nbMot1 = random.randint(0,8)
+                            self.nbMot2 = random.randint(0,8)
+                            self.nbMot3 = random.randint(0,8)
                             while self.nbMot1 == motTemp:
-                                self.nbMot1 = random.randint(0,4)
+                                self.nbMot1 = random.randint(0,8)
                             while self.nbMot2 == self.nbMot1 :
-                                self.nbMot2 = random.randint(0,4)
+                                self.nbMot2 = random.randint(0,8)
                             while self.nbMot3 == self.nbMot2 or self.nbMot3 == self.nbMot1 :
-                                self.nbMot3 = random.randint(0,4)
+                                self.nbMot3 = random.randint(0,8)
                             self.motSelec = [self.motsMeeting[self.nbMot1],self.motsMeeting[self.nbMot2],self.motsMeeting[self.nbMot3]]
                             self.motTargetFR.setPlainText(self.motSelec[0][1])
                             self.motTargetEN1.setPlainText(self.motSelec[0][0])
@@ -819,15 +815,15 @@ class Scene(QGraphicsScene):
                             
                             self.panierSelec = random.randint(0,2)
                             motTemp = self.nbMot1
-                            self.nbMot1 = random.randint(0,4)
-                            self.nbMot2 = random.randint(0,4)
-                            self.nbMot3 = random.randint(0,4)
+                            self.nbMot1 = random.randint(0,8)
+                            self.nbMot2 = random.randint(0,8)
+                            self.nbMot3 = random.randint(0,8)
                             while self.nbMot1 == motTemp:
-                                self.nbMot1 = random.randint(0,4)
+                                self.nbMot1 = random.randint(0,8)
                             while self.nbMot2 == self.nbMot1 :
-                                self.nbMot2 = random.randint(0,4)
+                                self.nbMot2 = random.randint(0,8)
                             while self.nbMot3 == self.nbMot2 or self.nbMot3 == self.nbMot1 :
-                                self.nbMot3 = random.randint(0,4)
+                                self.nbMot3 = random.randint(0,8)
                             self.motSelec = [self.motsMeeting[self.nbMot1],self.motsMeeting[self.nbMot2],self.motsMeeting[self.nbMot3]]
                             self.motTargetFR.setPlainText(self.motSelec[0][1])
                             self.motTargetEN1.setPlainText(self.motSelec[0][0])
@@ -981,15 +977,15 @@ class Scene(QGraphicsScene):
 
                             self.panierSelec = random.randint(0,2)
                             motTemp = self.nbMot1
-                            self.nbMot1 = random.randint(0,4)
-                            self.nbMot2 = random.randint(0,4)
-                            self.nbMot3 = random.randint(0,4)
+                            self.nbMot1 = random.randint(0,8)
+                            self.nbMot2 = random.randint(0,8)
+                            self.nbMot3 = random.randint(0,8)
                             while self.nbMot1 == motTemp:
-                                self.nbMot1 = random.randint(0,4)
+                                self.nbMot1 = random.randint(0,8)
                             while self.nbMot2 == self.nbMot1 :
-                                self.nbMot2 = random.randint(0,4)
+                                self.nbMot2 = random.randint(0,8)
                             while self.nbMot3 == self.nbMot2 or self.nbMot3 == self.nbMot1 :
-                                self.nbMot3 = random.randint(0,4)
+                                self.nbMot3 = random.randint(0,8)
                             self.motSelec = [self.motsMeeting[self.nbMot1],self.motsMeeting[self.nbMot2],self.motsMeeting[self.nbMot3]]
                             self.motTargetFR.setPlainText(self.motSelec[0][1])
                             self.motTargetEN1.setPlainText(self.motSelec[0][0])
@@ -1021,15 +1017,15 @@ class Scene(QGraphicsScene):
                                 
                             self.panierSelec = random.randint(0,2)
                             motTemp = self.nbMot1
-                            self.nbMot1 = random.randint(0,4)
-                            self.nbMot2 = random.randint(0,4)
-                            self.nbMot3 = random.randint(0,4)
+                            self.nbMot1 = random.randint(0,8)
+                            self.nbMot2 = random.randint(0,8)
+                            self.nbMot3 = random.randint(0,8)
                             while self.nbMot1 == motTemp:
-                                self.nbMot1 = random.randint(0,4)
+                                self.nbMot1 = random.randint(0,8)
                             while self.nbMot2 == self.nbMot1 :
-                                self.nbMot2 = random.randint(0,4)
+                                self.nbMot2 = random.randint(0,8)
                             while self.nbMot3 == self.nbMot2 or self.nbMot3 == self.nbMot1 :
-                                self.nbMot3 = random.randint(0,4)
+                                self.nbMot3 = random.randint(0,8)
                             self.motSelec = [self.motsMeeting[self.nbMot1],self.motsMeeting[self.nbMot2],self.motsMeeting[self.nbMot3]]
                             self.motTargetFR.setPlainText(self.motSelec[0][1])
                             self.motTargetEN1.setPlainText(self.motSelec[0][0])
@@ -1061,15 +1057,15 @@ class Scene(QGraphicsScene):
                             
                             self.panierSelec = random.randint(0,2)
                             motTemp = self.nbMot1
-                            self.nbMot1 = random.randint(0,4)
-                            self.nbMot2 = random.randint(0,4)
-                            self.nbMot3 = random.randint(0,4)
+                            self.nbMot1 = random.randint(0,8)
+                            self.nbMot2 = random.randint(0,8)
+                            self.nbMot3 = random.randint(0,8)
                             while self.nbMot1 == motTemp:
-                                self.nbMot1 = random.randint(0,4)
+                                self.nbMot1 = random.randint(0,8)
                             while self.nbMot2 == self.nbMot1 :
-                                self.nbMot2 = random.randint(0,4)
+                                self.nbMot2 = random.randint(0,8)
                             while self.nbMot3 == self.nbMot2 or self.nbMot3 == self.nbMot1 :
-                                self.nbMot3 = random.randint(0,4)
+                                self.nbMot3 = random.randint(0,8)
                             self.motSelec = [self.motsMeeting[self.nbMot1],self.motsMeeting[self.nbMot2],self.motsMeeting[self.nbMot3]]
                             self.motTargetFR.setPlainText(self.motSelec[0][1])
                             self.motTargetEN1.setPlainText(self.motSelec[0][0])
