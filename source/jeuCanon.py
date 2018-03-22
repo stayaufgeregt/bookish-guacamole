@@ -44,9 +44,9 @@ POSCanonX = 50
 POSCanonY = 225
 FRAME_TIME_MS = 20 #20ms/frame
 VITESSECANON = 100 #metre/seconde
-VITESSEPANIER = 20 #pix/sec
-VITESSEPANIER2 = 50
-VITESSEPANIER3 = 120
+VITESSEPANIER = 50 #pix/sec
+VITESSEPANIER2 = 100
+VITESSEPANIER3 = 200
 G = 25#9.81
 
 #longueur 65 pixels
@@ -405,17 +405,17 @@ class Scene(QGraphicsScene):
                         
                     """
                     
-                    self.CoorPanier[0] = self.CoorPanier[0]+VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier[0] = self.CoorPanier[0]+VITESSEPANIER*(FRAME_TIME_MS/200)
                     self.tempsPanier = self.tempsPanier+FRAME_TIME_MS/200
                     self.panier.setPos(self.CoorPanier[0],self.CoorPanier[1])
                     
 
-                    self.CoorPanier2[0] = self.CoorPanier2[0]+VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier2[0] = self.CoorPanier2[0]+VITESSEPANIER*(FRAME_TIME_MS/200)
                     self.tempsPanier2 = self.tempsPanier2+FRAME_TIME_MS/200
                     self.panier2.setPos(self.CoorPanier2[0],self.CoorPanier2[1])
                     
 
-                    self.CoorPanier3[0] = self.CoorPanier3[0]+VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier3[0] = self.CoorPanier3[0]+VITESSEPANIER*(FRAME_TIME_MS/200)
                     self.tempsPanier3 = self.tempsPanier3+FRAME_TIME_MS/200
                     self.panier3.setPos(self.CoorPanier3[0],self.CoorPanier3[1])
 
@@ -436,17 +436,17 @@ class Scene(QGraphicsScene):
                     self.cptTour = self.cptTour+1
                 if self.cptTour2<50 and self.cptTour>=50:
                     self.tempsPanier =0
-                    self.CoorPanier[0] = self.CoorPanier[0]-VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier[0] = self.CoorPanier[0]-VITESSEPANIER*(FRAME_TIME_MS/200)
                     self.tempsPanier = self.tempsPanier+FRAME_TIME_MS/200
                     self.panier.setPos(self.CoorPanier[0],self.CoorPanier[1])
                    
 
-                    self.CoorPanier2[0] = self.CoorPanier2[0]-VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier2[0] = self.CoorPanier2[0]-VITESSEPANIER*(FRAME_TIME_MS/200)
                     self.tempsPanier2 = self.tempsPanier2+FRAME_TIME_MS/200
                     self.panier2.setPos(self.CoorPanier2[0],self.CoorPanier2[1])
                     
 
-                    self.CoorPanier3[0] = self.CoorPanier3[0]-VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier3[0] = self.CoorPanier3[0]-VITESSEPANIER*(FRAME_TIME_MS/200)
                     self.tempsPanier3 = self.tempsPanier3+FRAME_TIME_MS/200
                     self.panier3.setPos(self.CoorPanier3[0],self.CoorPanier3[1])
 
@@ -889,17 +889,17 @@ class Scene(QGraphicsScene):
                         
                     """
                     
-                    self.CoorPanier[0] = self.CoorPanier[0]+VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier[0] = self.CoorPanier[0]+VITESSEPANIER3*(FRAME_TIME_MS/200)
                     self.tempsPanier = self.tempsPanier+FRAME_TIME_MS/200
                     self.panier.setPos(self.CoorPanier[0],self.CoorPanier[1])
                     
 
-                    self.CoorPanier2[0] = self.CoorPanier2[0]+VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier2[0] = self.CoorPanier2[0]+VITESSEPANIER3*(FRAME_TIME_MS/200)
                     self.tempsPanier2 = self.tempsPanier2+FRAME_TIME_MS/200
                     self.panier2.setPos(self.CoorPanier2[0],self.CoorPanier2[1])
                     
 
-                    self.CoorPanier3[0] = self.CoorPanier3[0]+VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier3[0] = self.CoorPanier3[0]+VITESSEPANIER3*(FRAME_TIME_MS/200)
                     self.tempsPanier3 = self.tempsPanier3+FRAME_TIME_MS/200
                     self.panier3.setPos(self.CoorPanier3[0],self.CoorPanier3[1])
 
@@ -920,17 +920,17 @@ class Scene(QGraphicsScene):
                     self.cptTour = self.cptTour+1
                 if self.cptTour2<50 and self.cptTour>=50:
                     self.tempsPanier =0
-                    self.CoorPanier[0] = self.CoorPanier[0]-VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier[0] = self.CoorPanier[0]-VITESSEPANIER3*(FRAME_TIME_MS/200)
                     self.tempsPanier = self.tempsPanier+FRAME_TIME_MS/200
                     self.panier.setPos(self.CoorPanier[0],self.CoorPanier[1])
                    
 
-                    self.CoorPanier2[0] = self.CoorPanier2[0]-VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier2[0] = self.CoorPanier2[0]-VITESSEPANIER3*(FRAME_TIME_MS/200)
                     self.tempsPanier2 = self.tempsPanier2+FRAME_TIME_MS/200
                     self.panier2.setPos(self.CoorPanier2[0],self.CoorPanier2[1])
                     
 
-                    self.CoorPanier3[0] = self.CoorPanier3[0]-VITESSEPANIER2*(FRAME_TIME_MS/200)
+                    self.CoorPanier3[0] = self.CoorPanier3[0]-VITESSEPANIER3*(FRAME_TIME_MS/200)
                     self.tempsPanier3 = self.tempsPanier3+FRAME_TIME_MS/200
                     self.panier3.setPos(self.CoorPanier3[0],self.CoorPanier3[1])
 
