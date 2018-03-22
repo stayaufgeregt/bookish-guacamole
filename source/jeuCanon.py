@@ -4,6 +4,11 @@ import random
 import time
 import matplotlib as plt
 import listGuesserGUI
+import scoreBoard
+#saveScore(points, playerName)
+#ex: saveScore(64, "maximaxft")
+#getScoreBoard(sort=[ 'points' | 'point' | 'name' | 'date' ])
+#ex: saveScore(), saveScore(sort='points')
 
 from PyQt5.QtCore import (
     Qt,
